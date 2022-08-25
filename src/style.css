@@ -48,13 +48,26 @@ form {
   outline: 0;
 }
 
-.add-btn {
+.add-btn, .edit-btn {
 	background: none;
 	border: none;
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+#tasks-list {
+  padding: 1em;
+}
+
+#tasks-list li{
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  margin-left: -15em;
 }
 
 .bottom {
