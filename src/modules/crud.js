@@ -4,12 +4,10 @@ const list = document.getElementById('tasks-list');
 
 function crud() {
   list.innerHTML = '';
-  const tasksList = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+  const tasksList = localStorage.getItem('data')
+    ? JSON.parse(localStorage.getItem('data'))
+    : [];
   for (let i = 0; i < tasksList.length; i += 1) {
-    const li = document.createElement('li');
-    li.id = i + 1;
-    li.classList.add('container-li');
-
     const input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
     input.classList.add('checkbox');
@@ -18,7 +16,6 @@ function crud() {
       input.checked = true;
     }
 
-    // descrption
     const label = document.createElement('input');
     label.value = `${tasksList[i].description}`;
     label.classList.add('description');
@@ -28,12 +25,16 @@ function crud() {
     }
 
     label.setAttribute('readOnly', 'readOnly');
-    label.classList.add('descrption');
+    label.classList.add('description');
 
     const edit = document.createElement('button');
-    edit.classList.add('edit-btn');
-    edit.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
     edit.id = i + 1;
+    edit.innerHTML = '✏️';
+    edit.classList.add('edit-btn');
+
+    const li = document.createElement('li');
+    li.classList.add('container-li');
+    li.id = i + 1;
 
     li.appendChild(input);
     li.appendChild(label);
@@ -60,18 +61,18 @@ function crud() {
     });
 
     edit.addEventListener('click', (event) => {
-      if (edit.innerHTML === '<i class="fa-solid fa-ellipsis-vertical"></i>') {
+      if (edit.innerHTML === '✏️') {
         label.removeAttribute('readonly');
         label.focus();
-        edit.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
+        edit.innerHTML = '💾';
       } else {
         const edited = label.value;
         const idNumber = event.target.id;
         label.setAttribute('readonly', 'readonly');
-        edit.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+        edit.innerHTML = '✏️';
 
         const data = JSON.parse(localStorage.getItem('data'));
-        data[idNumber].description = `${edited}`;
+        data[idNumber - 1].description = `${edited}`;
         localStorage.setItem('data', JSON.stringify(data));
       }
     });
