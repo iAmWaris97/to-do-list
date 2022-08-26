@@ -1,10 +1,12 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To Do list: list structure
+# To Do list: add & remove
 
-> List Structure for the To Do list project!
+> ToDo list to add remove or update a task!
 
-This is the structure of the TODO list project.
+![Project Screenshot](./project-snapshot.PNG "Capstone")
+
+I have implemented CRUD operations in this TODO list app.
 
 ## Built With
 
