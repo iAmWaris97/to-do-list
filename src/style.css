@@ -67,6 +67,11 @@ form {
   justify-content: space-between;
 }
 
+.container-li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
 label {
   margin-left: -15em;
 }
