@@ -17,7 +17,7 @@ body {
   height: auto;
   width: 40%;
   margin: auto;
-  margin-top: 5em;
+  margin-top: 4em;
   border-radius: 5px;
 }
 
@@ -26,7 +26,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid#eee;
-  padding: 1em;
+  padding: 0.6em;
   margin-bottom: 8px;
 }
 
@@ -34,14 +34,14 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
+  padding: 0.5em;
   border-bottom: 1px solid#eee;
 }
 
 #input {
   border: 0;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #input:focus {
@@ -49,7 +49,8 @@ form {
 }
 
 .add-btn,
-.edit-btn {
+.edit-btn,
+.delete-btn {
   background: none;
   border: none;
   padding: 0;
@@ -64,11 +65,26 @@ form {
 
 #tasks-list li {
   display: flex;
-  justify-content: space-between;
 }
 
-label {
-  margin-left: -15em;
+.edit-btn {
+  margin-left: auto;
+}
+
+.container-li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.description {
+  margin-left: 5px;
+  border: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+.description:focus {
+  outline: 0;
 }
 
 .bottom {
@@ -84,7 +100,7 @@ label {
   height: 30px;
   border: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #413f42;
   background-color: inherit;
 }

@@ -1,54 +1,28 @@
 import './style.css';
 
-const tasks = [
-  {
-    description: 'Shopping',
-    completed: false,
-    index: 0,
-  },
+import { addTask, crud } from './modules/crud.js';
 
-  {
-    description: 'Walking',
-    completed: false,
-    index: 1,
-  },
+const addBtn = document.querySelector('.add-btn');
+const tasksList = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
 
-  {
-    description: 'Painting',
-    completed: false,
-    index: 2,
-  },
-];
+let id = 1;
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (addTask.value !== '') {
+    const task = {
+      description: `${addTask.value}`,
+      completed: false,
+      index: id,
+    };
+    tasksList.push(task);
 
-const list = document.getElementById('tasks-list');
-
-window.addEventListener('load', () => {
-  for (let i = 0; i < tasks.length; i += 1) {
-    // create list item
-    const li = document.createElement('li');
-    li.classList.add('container-li');
-
-    // create ceckbox
-    const input = document.createElement('input');
-    input.setAttribute('type', 'checkbox');
-    input.classList.add('checkbox');
-    input.id = 'checkbox';
-
-    // create description
-    const label = document.createElement('label');
-    label.textContent = `${tasks[i].description}`;
-    label.classList.add('description');
-    label.setAttribute('for', 'checkbox');
-
-    // create edit button
-    const edit = document.createElement('button');
-    edit.classList.add('edit-btn');
-    edit.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
-
-    // append the childs
-    li.appendChild(input);
-    li.appendChild(label);
-    li.appendChild(edit);
-    list.appendChild(li);
+    const tasks = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+    tasks.push(task);
+    for (let i = 0; i < tasks.length; i += 1) {
+      tasks[i].index = i + 1;
+    }
+    localStorage.setItem('data', JSON.stringify(tasks));
   }
+  id += 1;
+  crud();
 });
