@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-
 const addTask = document.getElementById('input');
 const list = document.getElementById('tasks-list');
 
@@ -87,9 +85,10 @@ function crud() {
     deleteBtn.addEventListener('click', (event) => {
       if (event.target.textContent === '🚮') {
         event.target.parentElement.remove();
-        const taskID = event.target.id;
+        const taskid = event.target.id;
+        const taskID = Number(taskid);
         const data = JSON.parse(localStorage.getItem('data'));
-        const notDeleted = data.filter((x) => x.index != taskID);
+        const notDeleted = data.filter((x) => x.index !== taskID);
         for (let i = 0; i < notDeleted.length; i += 1) {
           notDeleted[i].index = i + 1;
         }
