@@ -1,4 +1,5 @@
-// Constants:
+/* eslint-disable eqeqeq */
+
 const addTask = document.getElementById('input');
 const list = document.getElementById('tasks-list');
 
@@ -32,6 +33,11 @@ function crud() {
     edit.innerHTML = '✏️';
     edit.classList.add('edit-btn');
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.innerHTML = '🚮';
+    deleteBtn.id = i + 1;
+
     const li = document.createElement('li');
     li.classList.add('container-li');
     li.id = i + 1;
@@ -39,6 +45,7 @@ function crud() {
     li.appendChild(input);
     li.appendChild(label);
     li.appendChild(edit);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
 
     addTask.value = '';
@@ -74,6 +81,19 @@ function crud() {
         const data = JSON.parse(localStorage.getItem('data'));
         data[idNumber - 1].description = `${edited}`;
         localStorage.setItem('data', JSON.stringify(data));
+      }
+    });
+
+    deleteBtn.addEventListener('click', (event) => {
+      if (event.target.textContent === '🚮') {
+        event.target.parentElement.remove();
+        const taskID = event.target.id;
+        const data = JSON.parse(localStorage.getItem('data'));
+        const notDeleted = data.filter((x) => x.index != taskID);
+        for (let i = 0; i < notDeleted.length; i += 1) {
+          notDeleted[i].index = i + 1;
+        }
+        localStorage.setItem('data', JSON.stringify(notDeleted));
       }
     });
   }
