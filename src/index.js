@@ -3,6 +3,7 @@ import './style.css';
 import { addTask, crud } from './modules/crud.js';
 
 const addBtn = document.querySelector('.add-btn');
+const clearCompleted = document.querySelector('.clear');
 const tasksList = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
 
 let id = 1;
@@ -24,5 +25,16 @@ addBtn.addEventListener('click', (e) => {
     localStorage.setItem('data', JSON.stringify(tasks));
   }
   id += 1;
+  crud();
+});
+
+clearCompleted.addEventListener('click', (e) => {
+  e.preventDefault();
+  const notDeleted = tasksList.filter((x) => x.completed === false);
+
+  for (let i = 0; i < notDeleted.length; i += 1) {
+    notDeleted[i].index = i + 1;
+  }
+  localStorage.setItem('data', JSON.stringify(notDeleted));
   crud();
 });
