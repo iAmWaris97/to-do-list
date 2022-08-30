@@ -28,12 +28,12 @@ function crud() {
 
     const edit = document.createElement('button');
     edit.id = i + 1;
-    edit.innerHTML = '✏️';
+    edit.innerHTML = '✍';
     edit.classList.add('edit-btn');
 
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-btn');
-    deleteBtn.innerHTML = '🚮';
+    deleteBtn.innerHTML = '🗑️';
     deleteBtn.id = i + 1;
 
     const li = document.createElement('li');
@@ -66,15 +66,15 @@ function crud() {
     });
 
     edit.addEventListener('click', (event) => {
-      if (edit.innerHTML === '✏️') {
+      if (edit.innerHTML === '✍') {
         label.removeAttribute('readonly');
         label.focus();
-        edit.innerHTML = '💾';
+        edit.innerHTML = '👌';
       } else {
         const edited = label.value;
         const idNumber = event.target.id;
         label.setAttribute('readonly', 'readonly');
-        edit.innerHTML = '✏️';
+        edit.innerHTML = '✍';
 
         const data = JSON.parse(localStorage.getItem('data'));
         data[idNumber - 1].description = `${edited}`;
@@ -83,7 +83,7 @@ function crud() {
     });
 
     deleteBtn.addEventListener('click', (event) => {
-      if (event.target.textContent === '🚮') {
+      if (event.target.textContent === '🗑️') {
         event.target.parentElement.remove();
         const taskid = event.target.id;
         const taskID = Number(taskid);

@@ -103,4 +103,5 @@ form {
   font-size: 14px;
   color: #413f42;
   background-color: inherit;
+  cursor: pointer;
 }
